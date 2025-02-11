@@ -7,6 +7,8 @@ import "./App.css";
 import BasicTable from "./components/BasicTable";
 import SavePDFButton from "./components/SavePDFButton";
 import Para from "./components/Para"; 
+import BarsDataset from "./components/BarsDataset";
+import StackBars from "./components/StackBars";
 function App() {
   return (
     <div>
@@ -33,6 +35,94 @@ function App() {
         <div className="card ">
           <h1>Sample Paragraph</h1>
           <Para />
+        </div>
+        <div className="card break">
+          <h1>Sample Paragraph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <Graph1 />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BarsDataset />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <BasicTable />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <BasicTable />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <ChartsOverviewDemo />
+        </div>
+        <div className="card ">
+          <h1>Sample Graph</h1>
+          <ChartsOverviewDemo />
+        </div>
+        <div className="card break">
+          <h1>Sample Graph</h1>
+          <ChartsOverviewDemo />
         </div>
       </div>
     </div>

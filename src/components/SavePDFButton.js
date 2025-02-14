@@ -4,7 +4,8 @@ import html2pdf from "html2pdf.js";
 
 const SavePDFButton = () => {
   const savePDF = () => {
-    const element = document.body; 
+    document.body.classList.remove("dark-mode");
+    const element = document.getElementById('dashboard-content');; 
 
     const options = {
       margin: [0.65, 0, 0.65, 0],

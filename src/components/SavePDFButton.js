@@ -1,11 +1,20 @@
 import React from "react";
 import { Button } from "@mui/material";
 import html2pdf from "html2pdf.js";
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 const SavePDFButton = () => {
   const savePDF = () => {
+    // Temporarily hide the header to exclude it from the PDF
+    const header = document.querySelector('.header');
+    if (header) {
+      header.style.display = 'none';
+    }
+
+    // Remove dark mode if applied
     document.body.classList.remove("dark-mode");
-    const element = document.getElementById('dashboard-content');; 
+
+    const element = document.getElementById('dashboard-content'); 
 
     const options = {
       margin: [0.65, 0, 0.65, 0],
@@ -25,16 +34,19 @@ const SavePDFButton = () => {
         const pageCount = pdf.internal.getNumberOfPages();
         for (let i = 1; i <= pageCount; i++) {
           pdf.setPage(i);
-
           pdf.setFontSize(12);
-          pdf.text("Dashboard Report", pdf.internal.pageSize.width / 2, 0.5, { align: "center" });
+          pdf.text(
+            "Dashboard Report", 
+            pdf.internal.pageSize.width / 2, 
+            0.5, 
+            { align: "center" }
+          );
 
           const headerLineY = 0.6; 
           pdf.setLineWidth(0); 
           pdf.line(0.5, headerLineY, pdf.internal.pageSize.width - 0.5, headerLineY); 
 
           const footerLineY = pdf.internal.pageSize.height - 0.7; 
-          pdf.setLineWidth(0);
           pdf.line(0.5, footerLineY, pdf.internal.pageSize.width - 0.5, footerLineY); 
 
           pdf.setFontSize(10);
@@ -43,12 +55,21 @@ const SavePDFButton = () => {
           const xPosition = (pdf.internal.pageSize.width - textWidth) / 2;
           pdf.text(footerText, xPosition, pdf.internal.pageSize.height - 0.25);
 
-          pdf.text(`Page ${i} of ${pageCount}`, pdf.internal.pageSize.width - 0.5, pdf.internal.pageSize.height - 0.25, { align: "right" });
+          pdf.text(
+            `Page ${i} of ${pageCount}`, 
+            pdf.internal.pageSize.width - 0.5, 
+            pdf.internal.pageSize.height - 0.25, 
+            { align: "right" }
+          );
         }
 
         pdf.save();
       })
       .then(() => {
+        // Restore the header visibility after PDF generation
+        if (header) {
+          header.style.display = 'block';
+        }
         console.log("PDF saved successfully.");
       });
   };
@@ -58,7 +79,7 @@ const SavePDFButton = () => {
       variant="contained"
       color="primary"
       onClick={savePDF}
-      style={{ position: "absolute", right: "20px", top: "15px" }}
+      startIcon={<SaveAltIcon />}
     >
       Save as PDF
     </Button>

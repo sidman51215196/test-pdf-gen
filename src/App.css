@@ -1,3 +1,4 @@
+
 .header {
   width: 100% !important; 
   background: #1976d2;
@@ -21,7 +22,7 @@
   display: flex;
   align-items: center;
   gap: 15px; /* Add more space between buttons */
-  margin-right: 150px; /* Add right margin */
+  
 }
 
 .App {

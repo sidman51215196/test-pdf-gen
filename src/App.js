@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import Graph1 from "./components/Graph1";
-import ChartsOverviewDemo from "./components/ChartsOverviewDemo";
-import "./App.css";
-import BasicTable from "./components/BasicTable";
-import SavePDFButton from "./components/SavePDFButton";
-import Para from "./components/Para"; 
-import BarsDataset from "./components/BarsDataset";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline, IconButton } from "@mui/material";
 import { LightMode, DarkMode } from '@mui/icons-material';
+import PreviewIcon from '@mui/icons-material/Preview';  
+import Preview2 from "./components/Preview2";  
+import Preview from "./components/Preview";
+import './App.css';
+
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const theme = createTheme({
@@ -30,131 +29,50 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <div>
-      {/* Header Section */}
-      <header className="header">
-          <div>Dashboard</div>
-          <div className="header-buttons">
-          <IconButton color="inherit" onClick={toggleTheme}>
-              {darkMode ? <LightMode /> : <DarkMode />}
-            </IconButton>
-            <SavePDFButton /> 
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div>
+          <Header toggleTheme={toggleTheme} darkMode={darkMode} setDarkMode={setDarkMode} />
+          
+          {/* Main Content */}
+          <div className="App pdf-content" id="dashboard-content">
+            <Routes>
+              <Route path="/" element={<Preview />} />
+              <Route path="/preview-pdf" element={<Preview2 />} />
+            </Routes>
           </div>
-          
-          
-        </header>
+        </div>
+      </ThemeProvider>
+    </Router>
+  );
+}
 
-      {/* Main Content */}
-      <div className="App pdf-content" id="dashboard-content">
-        <div className="card">
-          <h1>Basic Table</h1>
-          <BasicTable />
-        </div>
-        <div className="card break">
-          <h1>Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card">
-          <h1>Bar Chart</h1>
-          <ChartsOverviewDemo />
-        </div>
-        <div className="card ">
-          <h1>Sample Paragraph</h1>
-          <Para />
-        </div>
-        <div className="card break">
-          <h1>Sample Paragraph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <Graph1 />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BarsDataset />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <BasicTable />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <BasicTable />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <ChartsOverviewDemo />
-        </div>
-        <div className="card ">
-          <h1>Sample Graph</h1>
-          <ChartsOverviewDemo />
-        </div>
-        <div className="card break">
-          <h1>Sample Graph</h1>
-          <ChartsOverviewDemo />
-        </div>
+const Header = ({ toggleTheme, darkMode, setDarkMode }) => {
+  const location = useLocation();
+  
+
+  if (location.pathname === "/preview-pdf") {
+    return null;  
+  }
+
+  const handlePreviewClick = () => {
+    setDarkMode(false);  
+    window.open('/preview-pdf', '_blank');  
+  };
+
+  return (
+    <header className="header">
+      <div>Dashboard</div>
+      <div className="header-buttons">
+        <IconButton color="inherit" onClick={toggleTheme}>
+          {darkMode ? <LightMode /> : <DarkMode />}
+        </IconButton>        
+        <IconButton className="btn" color="inherit" onClick={handlePreviewClick}>
+          <PreviewIcon  /> 
+        </IconButton>
       </div>
-    </div>
-    </ThemeProvider>
+    </header>
   );
 }
 
